@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MenuOption } from '../../types/menu.option';
 
 @Component({
   selector: 'dit-menu',
@@ -8,12 +9,17 @@ import { RouterModule } from '@angular/router';
   template: `
     <nav>
       <ul>
-        <li>
-          <a [routerLink]="'home'" routerLinkActive="link-active">Inicio</a>
-        </li>
-        <li>
-          <a [routerLink]="'about'" routerLinkActive="link-active">Acerca de</a>
-        </li>
+        <!-- <li *ngFor="let option of options">
+          <a [routerLink]="option.path" routerLinkActive="link-active">{{
+            option.label
+          }}</a> -->
+        @for (item of options; track item.path) {
+          <li>
+            <a [routerLink]="item.path" routerLinkActive="link-active">{{
+              item.label
+            }}</a>
+          </li>
+        }
       </ul>
     </nav>
   `,
@@ -46,4 +52,9 @@ import { RouterModule } from '@angular/router';
     }
     `,
 })
-export class MenuComponent {}
+export class MenuComponent {
+  options: MenuOption[] = [
+    { label: 'Inicio', path: 'home' },
+    { label: 'Acerca de', path: 'about' },
+  ];
+}
