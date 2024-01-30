@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgDemoComponent } from './components/ng-demo/ng-demo.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @Component({
   selector: 'dit-root',
   standalone: true,
-  imports: [RouterOutlet, NgDemoComponent],
+  imports: [RouterOutlet, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
