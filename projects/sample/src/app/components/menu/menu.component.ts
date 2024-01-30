@@ -34,7 +34,6 @@ import { RouterModule } from '@angular/router';
           color: inherit;
         }
       }
-
     }
     .link-active {
       color: maroon;
