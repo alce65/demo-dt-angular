@@ -17,8 +17,6 @@ import { FormsModule } from '@angular/forms';
       />
     </label>
     <button type="button" (click)="onDelete()">Borrar</button>
-
-    {{ userName }}
   `,
   styles: ``,
 })

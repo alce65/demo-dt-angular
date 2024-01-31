@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { SampleComponent } from '../../components/sample/sample.component';
-import { CounterComponent } from '../../components/counter/counter.component';
+
 import { GreetingComponent } from '../../components/greeting/greeting.component';
+import { ClickerComponent } from '../../components/clicker/clicker.component';
 
 @Component({
   selector: 'dit-home',
   standalone: true,
-  imports: [SampleComponent, CounterComponent, GreetingComponent],
+  imports: [SampleComponent, ClickerComponent, GreetingComponent],
   template: `
     <p>home works!</p>
     <dit-sample />
-    <dit-counter />
+    <dit-clicker />
     <dit-greeting />
   `,
   styles: ``,
