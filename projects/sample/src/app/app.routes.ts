@@ -5,13 +5,19 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent() {
-      return import('./page/home/home.component');
+      return import('./pages/home/home.component');
+    },
+  },
+  {
+    path: 'todo',
+    loadComponent() {
+      return import('./pages/todo/todo.component');
     },
   },
   {
     path: 'about',
     loadComponent() {
-      return import('./page/about/about.component');
+      return import('./pages/about/about.component');
     },
   },
   { path: '**', redirectTo: 'home' },

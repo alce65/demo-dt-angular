@@ -1,0 +1,15 @@
+<ul>
+  @for (task of tasks; track task.id) {
+    <li>
+      <input
+        type="checkbox"
+        [checked]="task.isDone"
+        (change)="onChange(task)"
+      />
+      <span [class.done]="task.isDone">{{ task.title }}</span>
+      <button (click)="onDelete(task)">Remove</button>
+    </li>
+  } @empty {
+    <li>Loading tasks</li>
+  }
+</ul>
