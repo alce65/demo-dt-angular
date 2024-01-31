@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'dit-counter',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h2>counter</h2>
+    <h2>Counter {{ index }}</h2>
     <p>
       <button (click)="onClick(-1)" [disabled]="count <= -10">-</button>
 
@@ -31,9 +31,12 @@ import { Component } from '@angular/core';
   `,
 })
 export class CounterComponent {
+  @Input() index!: number;
+  @Output() eventClick = new EventEmitter<number>();
   count = 0;
 
   onClick(value: number) {
     this.count += value;
+    this.eventClick.next(value);
   }
 }

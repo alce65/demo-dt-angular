@@ -1,4 +1,6 @@
-<dit-menu></dit-menu>
-<main class="main">
-  <router-outlet />
-</main>
+<dit-layout>
+  <dit-menu [options]="menuOptions" class="menu"></dit-menu>
+  <main class="main">
+    <router-outlet />
+  </main>
+</dit-layout>

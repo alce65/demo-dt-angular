@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MenuOption } from '../../types/menu.option';
 
@@ -53,8 +53,5 @@ import { MenuOption } from '../../types/menu.option';
     `,
 })
 export class MenuComponent {
-  options: MenuOption[] = [
-    { label: 'Inicio', path: 'home' },
-    { label: 'Acerca de', path: 'about' },
-  ];
+  @Input() options!: MenuOption[];
 }
