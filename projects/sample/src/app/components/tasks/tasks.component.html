@@ -1,6 +1,18 @@
+<details #details>
+  <summary>Add task</summary>
+
+  <!-- <div>
+    <input #refInput />
+    <button (click)="onAddRef(refInput.value)">Add</button>
+  </div> -->
+
+  <input type="text" placeholder="Titulo de la tarea" [(ngModel)]="newTask" />
+  <button (click)="onAdd()">Add</button>
+</details>
+
 <ul>
   @for (task of tasks; track task.id) {
-    <li>
+    <li [title]="task.id">
       <input
         type="checkbox"
         [checked]="task.isDone"
