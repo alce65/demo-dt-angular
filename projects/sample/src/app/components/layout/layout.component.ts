@@ -13,6 +13,12 @@ import { FooterComponent } from '../footer/footer.component';
     <ng-content select=".main"></ng-content>
     <dit-footer></dit-footer>
   `,
-  styles: ``,
+  styles: `
+    :host {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+    }`,
 })
 export class LayoutComponent {}

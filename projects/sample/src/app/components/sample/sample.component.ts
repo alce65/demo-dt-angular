@@ -22,6 +22,8 @@ import { Component } from '@angular/core';
         padding: 1rem;
         border: 2px solid #a28b8b;
         margin: 1rem 0;
+        width: 50%;
+        min-width: 300px;
       }
     `,
   ],

@@ -14,6 +14,11 @@ import { ClickerComponent } from '../../components/clicker/clicker.component';
     <dit-clicker />
     <dit-greeting />
   `,
-  styles: ``,
+  styles: `
+  :host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }`,
 })
 export default class HomeComponent {}
