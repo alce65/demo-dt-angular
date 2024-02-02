@@ -1,0 +1,14 @@
+<dit-add (addEvent)="onAdd($event)" />
+<ul>
+  @for (task of tasks; track task.id) {
+    <li [title]="task.id">
+      <dit-card
+        [task]="task"
+        (eventChange)="onChange($event)"
+        (eventDelete)="onDelete($event)"
+      />
+    </li>
+  } @empty {
+    <li>Loading tasks</li>
+  }
+</ul>

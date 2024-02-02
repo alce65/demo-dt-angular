@@ -548,4 +548,186 @@ junto con atributos en forma de hash creados por Angular durante la compilación
 
 Este comportamiento puede modificarse con el metadato **encapsulation** al que podemos asignar el valor **ViewEncapsulation.None**
 
+## Organización carpetas... Scaffolding
 
+src/app
+
+### Estructural
+
+src/app
+  /pages
+  /components
+  /types
+  /services
+
+### Features
+
+src/app
+  /core
+    /components
+    /types
+    /services
+  /home
+    /pages
+    /components
+    /types
+    /services
+  /products
+    /pages
+    /components
+    /types
+    /services
+  /partners
+    /pages
+    /components
+    /types
+    /services
+
+## Proyección del contenido
+
+### Componentes header y footer
+
+Añadimos los clásicos componentes header y footer.
+Como en otros componentes podríamos optar por hacer inline template (-t) y estilos (-s)
+o por prescindir de la carpeta para el componente (--flat)
+
+```shell
+  ng g c components/header -t -s --dry-run
+```
+
+En nuestro caso, los dejamos con el estilo que venimos usando en la aplicación
+
+```shell
+  ng g c components/header -t -s
+  ng g c components/footer -t -s
+```
+
+### Componente layout: proyección de componentes
+
+En lugar de exportar header y footer podemos crear un componente layout
+
+```shell
+  ng g c components/layout --project core
+```
+
+En el consumiremos header y footer dejando un espacio para todo el contenido que envuelva el componente
+
+Para indicar donde se colocará el contenido utilizamos la directiva ngContent
+
+```html
+<isdi-header></isdi-header>
+
+<ng-content></ng-content>
+
+<isdi-footer></isdi-footer>
+```
+
+Para poder usar el nuevo componentes lo añadimos al API de la librería (public-api.ts).
+Al mismo tiempo dejamos de exportar header y footer
+
+Al consumir el componente en la aplicación es un wrapper que envuelve todo el contenido que se va a proyectar dentro de el
+
+```html
+<isdi-layout>
+  <isdi-menu></isdi-menu>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</isdi-layout>
+```
+
+## Arquitectura
+
+### Comunicación entre componentes
+
+En Angular es bidireccional pero asimétrica
+
+- hacia abajo: paso de parámetros a los hijos
+- hacia arriba: envío de eventos hacia el padre
+
+### Inputs: paso de parámetros a los hijos
+
+Se basa en el decorador **@Input()** que incorpora una propiedad al 'interface' del componente, como si fuera un atributo html, que puede recibir valores cuando se consume el componente, ed decir en el padre.
+
+El resultado es muy similar a las props de React
+
+Como ejemplo, podemos refactorizar el componente menu y como lo consume app,
+llevándonos la definición de las opciones del menú hasta app
+
+El componte hijo define sus atributos
+
+```ts
+export class MenuComponent {
+  @Input() options: MenuOption[] = [];
+}
+```
+
+El componente padre proporciona valores a esos atributos, accediendo a ellos con el operador [], igual que a los atributos html
+
+```ts
+@Component({
+  ...
+})
+export class AppComponent {
+  menuOptions: MenuOption[] = [
+    { path: 'home', label: 'Home' },
+    { path: 'works', label: 'Works' },
+    { path: 'about', label: 'Acerca de' },
+  ];
+}
+```
+
+```html
+<isdi-menu class="menu" [options]="menuOptions"></isdi-menu>
+```
+
+### Outputs: eventos hacia el padre
+
+Se basa en dos elementos:
+
+- el decorador **@Output()**, peu permite dirigir eventos hacia el nivel anterior (padre)
+- la clase **EventEmitter** que permite crear y emitir eventos con cualquier contenido
+
+Para verlo, crearemos un componente clickers que contendrá varios contadores y
+totalizara el número de clicks y el valor total en el conjunto de ellos,
+
+```shell
+  ng g c components/clickers --project demo
+```
+
+Sustituiremos con el nuevo componente el counter que ahora tenemos en la página home
+Y tendremos 2 contadores que funciona independientemente
+
+El componente contador, cuando cuando se hace click emitirá un evento con el valor que acumula.
+Para ello dispone en el eventEmitter del método next() o su alias emit()
+El primer nombre nos indica que en realidad se trata de un observable
+
+```ts
+  @Output() countEvent: EventEmitter<number>
+
+  constructor() {
+    this.countEvent = new EventEmitter()
+  }
+
+  updateCounter(value: number) {
+    this.counter = this.counter + value;
+    // this.countEvent.emit(value)
+    this.countEvent.next(value);
+  }
+```
+
+El componente clickers estará escuchando (listener) los eventos countEvent como lo haría con cualquier otro evento
+
+```html
+  <isdi-counter (countEvent)="handleCounter($event)" /> 
+  <isdi-counter (countEvent)="handleCounter($event)" />
+```
+
+Y en el correspondiente manejador aplicara la lógica necesaria al caso
+
+```ts
+  handleCounter(value: number) {
+    this.clicks += 1;
+    this.collected += value;
+  }
+```
