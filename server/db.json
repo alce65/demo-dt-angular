@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "jd@acme.com"
+    },
+    {
+      "id": "2",
+      "name": "Jane Doe",
+      "email": ""
+    }
+  ],
+  "courses": [
+    {
+      "id": "4743431b-53ea-4279-ada8-e41521cd393f",
+      "title": "Angular Básico",
+      "author": "Pepe",
+      "isDone": true
+    },
+    {
+      "id": "937f6bec-c385-4556-baba-dfb8e138cccf",
+      "title": "Angular Avanzado",
+      "author": "Juan",
+      "isDone": false
+    },
+    {
+      "id": "05375a34-935a-4b91-9287-47efe3409806",
+      "title": "Node + Express",
+      "author": "Rosa",
+      "isDone": false
+    }
+  ]
+}

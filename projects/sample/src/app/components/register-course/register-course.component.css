@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  border: 2px solid var(--primary-color);
+  padding: 0.5rem;
+  padding-block-start: 1.5rem;
+}
+
+h3 {
+  text-align: center;
+  margin-block-start: 0;
+  color: var(--secondary-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-input {
+  label {
+    position: relative;
+  }
+
+  input,
+  textarea {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    width: 90%;
+    min-width: 15rem;
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+  }
+
+  input.ng-dirty + span,
+  input:focus + span {
+    top: -1.2rem;
+    font-weight: 700;
+    transition: font-weight 1s;
+  }
+
+  textarea + span {
+    position: absolute;
+    left: 0;
+    top: -1rem;
+    color: var(--secondary-color);
+  }
+
+  textarea.ng-dirty + span,
+  textarea:focus + span {
+    top: -10.5rem;
+    font-weight: 700;
+    transition: font-weight 1s;
+  }
+}
+
+.form-check {
+  span {
+    color: var(--secondary-color);
+  }
+}
+
+.form-select {
+  label {
+    position: relative;
+  }
+  select {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    width: 90%;
+    min-width: 15rem;
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+  }
+
+  select.ng-dirty + span,
+  select:focus + span {
+    top: -1.2rem;
+    font-weight: 700;
+    transition: font-weight 1s;
+  }
+}
+
+.form-radio {
+  fieldset {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    margin: 0;
+    padding: 0;
+
+    legend {
+      padding-block-end: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    legend.selected {
+      font-weight: 700;
+      transition: font-weight 1s;
+    }
+  }
+  input:checked + span {
+    color: var(--secondary-color);
+  }
+}
+
+.info-error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-block: 0;
+}

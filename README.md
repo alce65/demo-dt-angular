@@ -1,3 +1,99 @@
+- [Formación DigiTech](#formación-digitech)
+  - [**Angular - Dia 1 (29-Enero)**](#angular---dia-1-29-enero)
+  - [Creación del proyecto](#creación-del-proyecto)
+  - [Incorporación de Linters](#incorporación-de-linters)
+    - [ESLint](#eslint)
+    - [Prettier](#prettier)
+  - [Primera aproximación a Angular](#primera-aproximación-a-angular)
+    - [Revisión del Scaffolding resultante](#revisión-del-scaffolding-resultante)
+      - [El workspace](#el-workspace)
+      - [El proyecto de tipo aplicación](#el-proyecto-de-tipo-aplicación)
+      - [El proceso de arranque (bootstrap) de la aplicación](#el-proceso-de-arranque-bootstrap-de-la-aplicación)
+    - [Revisión de las operaciones básicas con el CLI (1): scaffolding y server](#revisión-de-las-operaciones-básicas-con-el-cli-1-scaffolding-y-server)
+      - [Development server](#development-server)
+      - [Code scaffolding](#code-scaffolding)
+    - [COMPONENTE (Review)](#componente-review)
+    - [Revisión de las operaciones básicas con el CLI (2): build y test](#revisión-de-las-operaciones-básicas-con-el-cli-2-build-y-test)
+      - [Build](#build)
+      - [Running tests unitarios](#running-tests-unitarios)
+  - [**Angular - Día 2 (30-Enero)**](#angular---día-2-30-enero)
+  - [Páginas y Routing: lazy loading en las rutas](#páginas-y-routing-lazy-loading-en-las-rutas)
+    - [Creación de componentes pages](#creación-de-componentes-pages)
+    - [Rutas](#rutas)
+    - [Rutas lazy](#rutas-lazy)
+    - [Menu: navegación sin recarga para una SPA](#menu-navegación-sin-recarga-para-una-spa)
+  - [Componentes: estado y binding. Eventos. Templates y control flow. Estilos](#componentes-estado-y-binding-eventos-templates-y-control-flow-estilos)
+    - [Opciones del menu como propiedad: uso de @for](#opciones-del-menu-como-propiedad-uso-de-for)
+    - [Componente contador: estado y eventos](#componente-contador-estado-y-eventos)
+    - [Uso condicional de clases CSS](#uso-condicional-de-clases-css)
+    - [Limites en el contador: renderizado condicional](#limites-en-el-contador-renderizado-condicional)
+    - [Componente saludo: two-way data binding with ngModel](#componente-saludo-two-way-data-binding-with-ngmodel)
+    - [Los estilos y los componentes](#los-estilos-y-los-componentes)
+  - [**Angular - Día 3 (31-Enero)**](#angular---día-3-31-enero)
+  - [Organización carpetas... Scaffolding](#organización-carpetas-scaffolding)
+    - [Estructural](#estructural)
+    - [Features](#features)
+  - [Proyección del contenido](#proyección-del-contenido)
+    - [Componentes header y footer](#componentes-header-y-footer)
+    - [Componente layout: proyección de componentes](#componente-layout-proyección-de-componentes)
+  - [Comunicación entre componentes](#comunicación-entre-componentes)
+    - [Inputs: paso de parámetros a los hijos](#inputs-paso-de-parámetros-a-los-hijos)
+    - [Outputs: eventos hacia el padre](#outputs-eventos-hacia-el-padre)
+    - [Página TODO. Componente 'TODO List' unitario](#página-todo-componente-todo-list-unitario)
+      - [La vista (template)](#la-vista-template)
+      - [La lógica del componente](#la-lógica-del-componente)
+  - [**Angular - Día 4 (2-Febrero)**](#angular---día-4-2-febrero)
+  - [Completando ToDo List - La funcionalidad de Añadir](#completando-todo-list---la-funcionalidad-de-añadir)
+  - [Arquitectura](#arquitectura)
+  - [Modelo controlador (contenedor) / presentadores](#modelo-controlador-contenedor--presentadores)
+  - [Challenge 4. Lista de notas: List / Cards + Add](#challenge-4-lista-de-notas-list--cards--add)
+    - [Solución: Lista de notas](#solución-lista-de-notas)
+      - [Componente notesList](#componente-noteslist)
+      - [Componente noteAdd](#componente-noteadd)
+      - [Componente noteCard](#componente-notecard)
+  - [**Angular - Día 5 (5-Febrero)**](#angular---día-5-5-febrero)
+  - [Abstracción de la lógica en servicios. Repositorio](#abstracción-de-la-lógica-en-servicios-repositorio)
+    - [Nueva feature: Courses](#nueva-feature-courses)
+    - [Repositorio inMemory](#repositorio-inmemory)
+  - [Persistencia en el repositorio con localStore](#persistencia-en-el-repositorio-con-localstore)
+    - [Creación de un servicio storage abstrayendo localStore/sessionStore](#creación-de-un-servicio-storage-abstrayendo-localstoresessionstore)
+    - [Uso del servicio en un nuevo repo: courses.local.repo](#uso-del-servicio-en-un-nuevo-repo-courseslocalrepo)
+    - [Uso del repo courses.local.repo en el componente](#uso-del-repo-courseslocalrepo-en-el-componente)
+  - [Sub-routing](#sub-routing)
+    - [Sub-routing en la página Courses](#sub-routing-en-la-página-courses)
+  - [Formularios Template-Driven](#formularios-template-driven)
+    - [Creación del formulario](#creación-del-formulario)
+  - [**Angular - Día 6 (6-Febrero)**](#angular---día-6-6-febrero)
+  - [Formularios Template-Driven (continuación)](#formularios-template-driven-continuación)
+    - [Controles de formulario](#controles-de-formulario)
+    - [Envío de los datos](#envío-de-los-datos)
+    - [Validación](#validación)
+  - [Introducción al backend](#introducción-al-backend)
+    - [Configuración del acceso al backend](#configuración-del-acceso-al-backend)
+    - [Servicio de acceso al backend: servicio APIRepo encapsulando fetch](#servicio-de-acceso-al-backend-servicio-apirepo-encapsulando-fetch)
+  - [Reactividad basada en RxJs](#reactividad-basada-en-rxjs)
+    - [OBSERVABLES](#observables)
+  - [**Angular - Día 7 (7-Febrero)**](#angular---día-7-7-febrero)
+  - [Conexiones Http con el backend](#conexiones-http-con-el-backend)
+    - [Interface del repositorio](#interface-del-repositorio)
+    - [Servicio de acceso al backend: servicio APIRepo encapsulando HttpClient](#servicio-de-acceso-al-backend-servicio-apirepo-encapsulando-httpclient)
+    - [Uso en el componente CursesList](#uso-en-el-componente-curseslist)
+    - [Gestión de errores en el servicio](#gestión-de-errores-en-el-servicio)
+    - [Uso de la gestión de errores en el componente CoursesList](#uso-de-la-gestión-de-errores-en-el-componente-courseslist)
+  - [Flux: Servicio con estado para el Store. BehaviorSubject y Observables](#flux-servicio-con-estado-para-el-store-behaviorsubject-y-observables)
+  - [Gestión de usuarios: Authentication (Autenticación) y Authorization (Autorización)](#gestión-de-usuarios-authentication-autenticación-y-authorization-autorización)
+    - [Tipado de los datos del usuario](#tipado-de-los-datos-del-usuario)
+    - [Servicio UsersStore](#servicio-usersstore)
+    - [Servicio UsersMemoryRepo](#servicio-usersmemoryrepo)
+    - [Componente Login](#componente-login)
+  - [Challenge Flux](#challenge-flux)
+    - [Iniciando la feature tareas](#iniciando-la-feature-tareas)
+    - [Creación de un servicio con estado](#creación-de-un-servicio-con-estado)
+    - [Uso del servicio con estado en el componente lista](#uso-del-servicio-con-estado-en-el-componente-lista)
+    - [Uso del servicio con estado en los componentes add y card](#uso-del-servicio-con-estado-en-los-componentes-add-y-card)
+  - [Gestión de errores centralizada. Interceptores](#gestión-de-errores-centralizada-interceptores)
+
+
 # Formación DigiTech
 
 Desarrollo Web FullStack
@@ -2531,50 +2627,6 @@ En realidad hemos pasado de
   de forma que los datos estarán disponibles para cualquier elemento de la aplicación que se haya suscrito al estado
 
 De esta forma abstraemos el estado y controlamos quien pude modificarlo, aplicando el patrón Flux
-
-### _Test del servicio con estado_
-
-El método getState se testa suscribiéndose al resultado de ejecutarlo y comprobando que se reciben las valores iniciales de las propiedades del estado definidos en el servicio (initialState)
-
-```ts
-  const result = service.getState();
-  result.data.subscribe((data) => expect(data).toEqual([]));
-  result.errors.subscribe((errors) => expect(errors).toEqual({}));
-```
-
-Los metodos que gestionan el estado se testan
-
-- moqueando el método del repo implicado de modo que devuelva datos
-- ejecutando el método que queremos testar
-- accediendo al estado mediante getState pasa suscribirnos a los datos
-- comprobando en la suscripción que los datos recibidos son los que proporciono el mock del repo
-
-```ts
-  const mockTasks = [{ id: 1 }] as unknown as Task[];
-  spyOn(TasksApiRepoService.prototype, 'getAll').and.returnValue(
-    of(mockTasks)
-  );
-  service.loadTasks();
-  service.getState().data.subscribe((data) => {
-    expect(data).toEqual(mockTasks);
-  });
-```
-
-En los casos de error el test es similar
-
-- el método moqueado del repo lanza un error
-- nos suscribimos a los errores
-
-```ts
-  const mockErrorMessage = 'Test error';
-  spyOn(TasksApiRepoService.prototype, 'getAll').and.returnValue(
-    throwError(() => new Error(mockErrorMessage))
-  );
-  service.loadTasks();
-  service.getState().errors.subscribe((errors) => {
-    expect(errors.load).toEqual(mockErrorMessage);
-  });
-```
 
 ## Gestión de errores centralizada. Interceptores
 

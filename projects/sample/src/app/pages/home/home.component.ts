@@ -3,14 +3,21 @@ import { SampleComponent } from '../../components/sample/sample.component';
 
 import { GreetingComponent } from '../../components/greeting/greeting.component';
 import { ClickerComponent } from '../../components/clicker/clicker.component';
+import { LoginComponent } from '../../components/login/login.component';
 
 @Component({
   selector: 'dit-home',
   standalone: true,
-  imports: [SampleComponent, ClickerComponent, GreetingComponent],
+  imports: [
+    SampleComponent,
+    LoginComponent,
+    ClickerComponent,
+    GreetingComponent,
+  ],
   template: `
     <p>home works!</p>
     <dit-sample />
+    <dit-login />
     <dit-clicker />
     <dit-greeting />
   `,

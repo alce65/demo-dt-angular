@@ -1,0 +1,115 @@
+<form class="form" #formRef #ngFormRef="ngForm" (ngSubmit)="onSubmit()">
+  <div class="email form-control form-input">
+    <label>
+      <input
+        type="email"
+        name="email"
+        autocomplete="email"
+        ngModel
+        required
+        email
+      />
+      <span>Correo electrónico</span>
+    </label>
+    @if (
+      ngFormRef.controls["email"].touched && ngFormRef.controls["email"].invalid
+    ) {
+      @if (ngFormRef.controls["email"].errors?.["required"]) {
+        <div class="info-error">{{ formStructure.email.errors.required }}</div>
+      }
+      @if (ngFormRef.controls["email"].errors?.["email"]) {
+        <div class="info-error">{{ formStructure.email.errors.email }}</div>
+      }
+    }
+  </div>
+  <div class="passwd form-control form-input">
+    <label>
+      <input
+        type="password"
+        name="passwd"
+        autocomplete="new-password"
+        ngModel
+        required
+        minlength="4"
+        maxlength="8"
+        pattern="^[a-zA-Z0-9]*$"
+      />
+      <span>Contraseña</span>
+    </label>
+    @if (
+      ngFormRef.controls["passwd"] &&
+      ngFormRef.controls["passwd"].touched &&
+      ngFormRef.controls["passwd"].invalid
+    ) {
+      @if (ngFormRef.controls["passwd"].hasError("required")) {
+        <p class="info-error">{{ formStructure.passwd.errors.required }}</p>
+      }
+      @if (ngFormRef.controls["passwd"].hasError("minlength")) {
+        <p class="info-error">{{ formStructure.passwd.errors.minlength }}</p>
+      }
+      @if (ngFormRef.controls["passwd"].hasError("maxlength")) {
+        <p class="info-error">{{ formStructure.passwd.errors.maxlength }}</p>
+      }
+      @if (ngFormRef.controls["passwd"].hasError("pattern")) {
+        <p class="info-error">{{ formStructure.passwd.errors.pattern }}</p>
+      }
+    }
+  </div>
+  <div class="first-name form-control form-input">
+    <label>
+      <input type="text" name="firstName" autocomplete="firstName" ngModel />
+      <span>Nombre</span>
+    </label>
+  </div>
+  <div class="surname form-control form-input">
+    <label>
+      <input type="text" name="surname" autocomplete="surname" ngModel />
+      <span>Apellido</span>
+    </label>
+  </div>
+  <div class="comments form-control form-input">
+    <label>
+      <textarea name="comments" cols="30" rows="10" ngModel> </textarea>
+      <span>Comentarios</span>
+    </label>
+  </div>
+
+  <div class="terms-acceptance form-control form-check">
+    <label>
+      <input type="checkbox" name="termsAcceptance" required ngModel />
+      <span>Acepto los términos y condiciones</span>
+    </label>
+  </div>
+
+  <div class="gender form-control form-radio">
+    <fieldset>
+      <legend>Género</legend>
+      @for (item of formStructure.gender.options; track item.id) {
+        <label>
+          <input type="radio" name="gender" [value]="item" ngModel required />
+          <span>{{ item.label }}</span>
+        </label>
+      }
+    </fieldset>
+  </div>
+  <div class="country form-control form-select">
+    <label>
+      <select name="country" ngModel required>
+        <!-- <option value=""></option> -->
+        @for (item of formStructure.countries.options; track $index) {
+          <option [ngValue]="item">{{ item.label }}</option>
+        }
+      </select>
+      <span>País</span>
+    </label>
+  </div>
+
+  <div class="buttons form-control">
+    <button type="reset">Cancelar</button>
+    <button type="submit" [disabled]="ngFormRef.invalid">Enviar</button>
+  </div>
+</form>
+
+<pre>
+  {{ ngFormRef.value | json }}
+</pre>
