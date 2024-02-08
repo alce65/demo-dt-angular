@@ -1,0 +1,14 @@
+<dit-add (addEvent)="onAdd($event)" />
+<ul>
+  @for (course of courses; track course.id) {
+    <li [title]="course.id">
+      <dit-card
+        [course]="course"
+        (eventChange)="onChange($event)"
+        (eventDelete)="onDelete($event)"
+      />
+    </li>
+  } @empty {
+    <li>Loading courses</li>
+  }
+</ul>

@@ -15,6 +15,7 @@ export class AppComponent {
   menuOptions: MenuOption[] = [
     { label: 'Inicio', path: 'home' },
     { label: 'Tareas', path: 'todo' },
+    { label: 'Cursos', path: 'courses' },
     { label: 'Acerca de', path: 'about' },
   ];
 }
